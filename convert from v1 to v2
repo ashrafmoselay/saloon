@@ -1,0 +1,11 @@
+select products.title,category.name,store.address,
+product_store_unit.cost_price,product_store_unit.sale_price,
+products_store.qty - products_store.sale_count
+ from 
+products 
+left join category on category.id = products.category_id
+join products_store on products_store.product_id = products.id
+join store on store.id = products_store.store_id
+join product_store_unit on product_store_unit.product_id = products.id
+where products.deleted_at is null 
+order by products.category_id

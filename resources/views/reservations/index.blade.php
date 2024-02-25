@@ -46,8 +46,8 @@
                                                 <div class="form-group">
                                                     <label>الموظف</label>
                                                     <select class="form-control empList" required="required">
-                                                        @foreach ($employees as $emp)
-                                                            <option value="{{ $emp->id }}">{{ $emp->name }}
+                                                        @foreach ($employees as $id => $name)
+                                                            <option value="{{ $id }}">{{ $name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -471,6 +471,18 @@
             float: left;
             margin-left: 10px;
         }
+
+        .fc-title,
+        .fc-time {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .fc-time {
+            color: #000;
+            background: #fff;
+            float: right;
+        }
     </style>
 @endpush
 
@@ -880,6 +892,7 @@
                             unitName + '">' +
                             '<input type="hidden" name="product[' + num + '][store_name]" value="' + storeName + '">' +
                             '<input type="hidden" name="product[' + num + '][store_id]" value="' + store_id + '">' +
+                            '<input type="hidden" name="product[' + num + '][status]" value="معلق">' +
                             num +
                             '</td>' +
                             '<td><input type="hidden" name="product[' + num + '][product_id]" value="' + productID +
@@ -928,6 +941,7 @@
                     '">' +
                     '<input type="hidden" name="product[' + num + '][store_name]" value="' + storeName + '">' +
                     '<input type="hidden" name="product[' + num + '][store_id]" value="' + store_id + '">' +
+                    '<input type="hidden" name="product[' + num + '][status]" value="معلق">' +
                     num +
                     '</td>' +
                     '<td><input type="hidden" name="product[' + num + '][product_id]" value="' + productID + '">' +

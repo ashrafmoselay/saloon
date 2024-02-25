@@ -153,6 +153,11 @@
             d.todate = $("#todate").val();
             d.priceType = $("#priceType").val();
             d.client_id = $("#client_id").val();
+            d.keyword = $("#keyword").val();
+            d.status = $("#status").val();
+            d.employee_id = $("#employee_id").val();
+            d.product_id = $("#product_id").val();
+            
             d.pageDisplayStart = (info.page) * info.length;
             return d;
         }
@@ -290,6 +295,10 @@
                     if ($(".linkTransferOrders").length && json.linkTransferOrders) {
                         var t = parseFloat(json.linkTransferOrders).toFixed(2);
                         $(".linkTransferOrders").html(t);
+                    }
+                    if ($("#count").length && json.count) {
+                        var t = parseFloat(json.count);
+                        $("#count").html(t);
                     }
                     return json.data;
                 }

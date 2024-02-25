@@ -19,8 +19,8 @@
                             <label>الموظف</label>
                             <select name="employee_id" class="form-control select2" required="required">
                                 <option value="">--- الموظف ---</option>
-                                @foreach ($employees as $emp)
-                                    <option {{ $row->employee_id?'selected':'' }} value="{{ $emp->id }}">{{ $emp->name }}
+                                @foreach ($employees as $id=>$name)
+                                    <option {{ $row->employee_id==$id?'selected':'' }} value="{{ $id }}">{{ $name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -59,7 +59,7 @@
                             <select name="status" class="form-control">
                                 <option value="">--- إختر الحالة ---</option>
                                 @foreach ($statusList as $st)
-                                    <option value="{{ $st }}">{{ $st }}</option>
+                                    <option {{ $row->status==$st?'selected':'' }} value="{{ $st }}">{{ $st }}</option>
                                 @endforeach
                             </select>
                         </div>

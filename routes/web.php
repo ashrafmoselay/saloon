@@ -132,6 +132,7 @@ Route::group(['middleware' => ['locale']], function () {
 
     Route::get('gprofit', 'HomeController@gprofit')->name('gprofit');
     Route::get('order/report', 'OrdersController@report')->name('orders.report');
+    Route::get('reseveation/report', 'ReservationController@report')->name('reservations.report');
     Route::get('purchase/report', 'OrdersController@purchasereport')->name('purchase.report');
     Route::get('persons/list/payments/{type?}', 'PersonsController@payments')->name('persons.payments');
     Route::get('getworkorderslist', 'OrdersController@getWorkOrders')->name('getWorkOrders');

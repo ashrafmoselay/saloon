@@ -35,6 +35,7 @@
             @endif
             @if (auth()->user()->can('index ReservationController'))
                 <li><a href="{{ route('reservations.index') }}"><i class="fa fa-calendar"></i><span> @lang('front.Reservations')</span> </a></li>
+                <li><a href="{{ route('reservations.report') }}"><i class="fa fa-file"></i><span> تقرير الحجوزات</span> </a></li>
             @endif
 
             

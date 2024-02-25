@@ -36,6 +36,16 @@
                             <label>@lang('front.notes')</label>
                             <input value="{{$service->note}}" name="note" type="text" class="form-control ">
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>@lang('front.image')</label>
+                                <input id="FileUploade" name="image" type="file" class="form-control ">
+                                @if(optional($service->getFirstMedia('images'))->getUrl())
+                                    <img style="width: 80px;" src="{{optional($service->getFirstMedia('images'))->getUrl()}}" />
+                                @endif
+                            </div>
+                        </div>
                 </div>
                 <!-- /.row -->
             </div>

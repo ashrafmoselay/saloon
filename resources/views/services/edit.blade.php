@@ -9,7 +9,7 @@
 		</h1>
 	</section>
 	<!-- Main content -->
-	<form action="{{route('services.update',$service)}}" method="post">
+	<form enctype="multipart/form-data" action="{{route('services.update',$service)}}" method="post">
 		{{ csrf_field() }}
 		{{ method_field('PUT')  }}
 		@include('services._form')

@@ -10,7 +10,7 @@
 		</h1>
 	</section>
 	<!-- Main content -->
-	<form action="{{route('services.store')}}" method="post">
+	<form enctype="multipart/form-data" action="{{route('services.store')}}" method="post">
 		{{ csrf_field() }}
 		@include('services._form')
 	</form>

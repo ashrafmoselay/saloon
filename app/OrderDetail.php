@@ -47,7 +47,7 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id')->withTrashed();
     }
-    
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'id')->withTrashed();
@@ -84,5 +84,43 @@ class OrderDetail extends Model
     public function getTotalAttribute($value)
     {
         return round($value, 2);
+    }
+
+    public function scopeFilter($query)
+    {
+        $client_id = request('client_id');
+        $fromdate = request('fromdate');
+        $todate = request('todate');
+        $employee_id = request('employee_id');
+        $product_id = request('product_id');
+        $status = request('status');
+        if ($client_id) {
+            $query->whereHas('order', function ($q) use ($client_id) {
+                $q->where('client_id', $client_id);
+            });
+        }
+        if ($product_id) {
+            $query->where('product_id', $product_id);
+        }
+        if ($employee_id) {
+            $query->where('employee_id', $employee_id);
+        }
+        if ($fromdate) {
+            $query->whereDate('serive_datetime','>=', $fromdate);
+        }
+        if ($todate) {
+            $query->whereDate('serive_datetime','<=', $todate);
+        }
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $keyword = request('keyword');
+        if ($keyword) {
+            $query->whereHas('order.client', function ($subqry) use ($keyword) {
+                $subqry->where('name', 'like', '%' . $keyword . '%')
+                    ->orwhere('mobile', 'like', '%' . $keyword . '%');;
+            });;
+        }
+        return $query;
     }
 }

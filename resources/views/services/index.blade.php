@@ -23,6 +23,7 @@
 							<thead>
 							<tr>
 								<td>#</td>
+								<th>@lang('front.image')</th>
 								<th>@lang('front.name')</th>
 								<th>@lang('front.saleprice')</th>
 								<th>@lang('front.parent')</th>
@@ -36,6 +37,9 @@
 							@foreach($services as $service)
 								<tr>
 									<td>{{$loop->iteration}}</td>
+									<td>
+										<img src="{{ optional($service->getFirstMedia('images'))->getUrl() ?: asset('icons/p.png') }}">
+									</td>
 									<td>{{$service->name}}</td>
 									<td>{{$service->last_cost}}</td>
 									<td>{{optional($service->category)->name}}</td>

@@ -34,7 +34,10 @@ class ServicesController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->except('_token');
-        Product::create($inputs);
+        $product = Product::create($inputs);
+        if ($request->has('image')) {
+            $product->addMedia($request->file('image'))->toMediaCollection('images');
+        }
         return back()->with('alert-success', 'تمت الاضافة بنجاح');
     }
 
@@ -75,6 +78,10 @@ class ServicesController extends Controller
         $service = Product::findOrFail($id);
         $inputs = $request->except('_token');
         $service->update($inputs);
+        if ($request->has('image')) {
+            $service->clearMediaCollection('images');
+            $service->addMedia($request->file('image'))->toMediaCollection('images');
+        }
         return back()->with('alert-success', 'تم التعديل بنجاح');;
     }
 

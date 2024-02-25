@@ -44,6 +44,8 @@ class OrdersController extends Controller
             return $this->getData('sales');
         }
     }
+    
+
     public function purchasereport()
     {
         if (!request()->ajax()) {
